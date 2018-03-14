@@ -1,0 +1,23 @@
+
+--TIPOS DE COMANDO
+RESET = 0
+COMMAND = 1
+
+--POSIBLES VALORES PARA COMANDO RESET
+RESET_BEACON = 0
+RESET_SCANNER = 1
+QUIT = 2
+RESTART = 3
+
+--NOMBRES DE ARCHIVOS
+
+BEACON_INIT = "MqttProgrammer.lua"
+SCANNER_INIT = "tuggerTrackerV4c.lua"
+INIT = "init.lua"
+
+--CONSTANTES BT
+
+BEACON = "beaconMode"
+SCANNER = "scannerMode"
+
+
