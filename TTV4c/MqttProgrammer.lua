@@ -158,8 +158,8 @@ function createAtManager()
                 if intentos < 3 then
                     intentos = intentos+1
                     print("reintentar enviar el comando atComand")
-                    print("ATCOMMAND: ",atComand)
-                    uart.write(1,atComand)
+                    print("ATCOMMAND: ",statement)
+                    uart.write(1,statement)
                 else
                     intentos = 0
                     print("mandar mensaje de error por MQTT y resetear el bluetooth")
