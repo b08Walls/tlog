@@ -1,5 +1,7 @@
 __Mode = BEACON_INIT
 
+dofile("gpioConfig.lua")
+
 programmerTimer = tmr.create()
 programmerTimer:register(5000,1,function()
     if programmer then
@@ -57,7 +59,7 @@ function initRemoteProg()
         programmerTimer:start()
         --sender.m:connect("m14.cloudmqtt.com",10246,0,
         --sender.m:connect("10.42.0.1",1883,0,
-        sender.m:connect("192.168.1.65",1883,0,
+        sender.m:connect(mqttIP,mqttPort,0,
             --FUNCION A REALIZAR CUANDO SE CONECTA CORRECTAMENTE
             function(client)
                 programmerTimer:stop()
@@ -178,7 +180,7 @@ function createAtManager()
         se concatena el valor al comando seleccionado]]
         if valor then
             statement = statement..valor
-        else
+        elseif not (statement == "AT+RESET") then
             --[[En caso de no tener declarado ningun nuevo valor se trata de una consulta a la configuracion
             del dispositivo, por lo que se concatena un signo de interrogacion al final del comando]]
             statement = statement.."?"

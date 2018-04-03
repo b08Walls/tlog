@@ -26,7 +26,4 @@ SCANNER = "scannerMode"
 statusLedPin = 3
 btResetPin = 1
 
---VARIABLE GLOBAL MODO:
-
-__Mode = SCANNER_INIT
 

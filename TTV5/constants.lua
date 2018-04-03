@@ -12,7 +12,8 @@ RESTART = 3
 --NOMBRES DE ARCHIVOS
 
 BEACON_INIT = "MqttProgrammer.lua"
-SCANNER_INIT = "tuggerTrackerV4c.lua"
+SCANNER_INIT = "tuggerTracker.lua"
+NETWORK_INIT = "NetworkConfig.lua"
 INIT = "init.lua"
 
 --CONSTANTES BT
@@ -24,9 +25,10 @@ SCANNER = "scannerMode"
 --PINES
 
 statusLedPin = 3
+configModePin = 2
 btResetPin = 1
 
---VARIABLE GLOBAL MODO:
+--CONSTANTES MQTT
 
-__Mode = SCANNER_INIT
-
+mqttIP = "192.168.1.68"
+mqttPort = 1883
