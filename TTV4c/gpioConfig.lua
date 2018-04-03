@@ -65,9 +65,19 @@ function initGPIO()
             enduser_setup.manual(true)
             --Se inicializa el modulo de configuracion con sus respectivas funciones de "callback"
             enduser_setup.start(function() print("CONECCION REALIZADA") end, function () 
-                print("SE HA TERMINADO LA CONFIGURACION") 
+                -- print("SE HA TERMINADO LA CONFIGURACION") 
+                -- enableWifiButton = true
+
+                --Se detiene el modulo de configuracion
+                print("se termino configuracion")
+                enduser_setup.stop()
+                --Se cambia el modulo wifi a modo STATION, es decir apaga el access point
+                wifi.setmode(wifi.STATION)
+                --Nuevamente se habilita la interrupcion del GPIO D2, el cual inicializa el modo de configuracion.
                 enableWifiButton = true
-                end)
+
+                print("BOTON HABILITADO")
+            end)
             print("fin de la configuracion")
 
         end
