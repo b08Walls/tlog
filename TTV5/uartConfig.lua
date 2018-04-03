@@ -220,6 +220,7 @@ function initUART()
             if data then
                 print("Datos recibidos de BT")
                 buffer = buffer..data
+                print(buffer)
 
                 if buffer:find("quit") then
                     print("****DETENER RUTINA****")

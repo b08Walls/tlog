@@ -133,7 +133,8 @@ function createAtManager()
         local parametro
         local valor
         if type(parametros) == "table" then
-            programmer.mqttPrint("RECIBIENDO CONJUNTO DE PARAMETROS")
+            --programmer.mqttPrint("RECIBIENDO CONJUNTO DE PARAMETROS")
+            print("RECIBIENDO CONJUNTO DE PARAMETROS")
             if parametros [1] then
                 parametro = parametros[1].parametro
                 valor = parametros[1].nuevoValor
@@ -164,7 +165,8 @@ function createAtManager()
                 else
                     intentos = 0
                     print("mandar mensaje de error por MQTT y resetear el bluetooth")
-                    programmer.mqttPrint("COMANDO NO HA OBTENIDO RESPUESTA")
+                    print("COMANDO NO HA OBTENIDO RESPUESTA")
+                    programmer.mqttPrint('{"rCode":0}');
                     tempo:stop()
                 end
             end--TERMINA FUNCION RETRY
@@ -234,7 +236,19 @@ function createAtManager()
                     print("OK%+[GS]et:"..valor)
                     print(respuesta:find("OK%+[GS]et:"..valor))
                     if respuesta:find("OK%+[GS]et:"..valor) then
-                        programmer.mqttPrint(respuesta)
+                        local answer = {}
+                        answer.data = parametro
+                        answer.respuesta = respuesta
+                        answer.rCode = 1
+
+                        local ok, json = pcall(sjson.encode, answer)
+                        if ok then
+                            print(json)
+                            programmer.mqttPrint(json)
+                        else
+                          print("failed to encode!")
+                        end
+
                         respuesta = "";
                         uart.on("data")
                         programmerTimer:stop()
