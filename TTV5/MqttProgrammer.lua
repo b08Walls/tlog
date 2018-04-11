@@ -1,5 +1,11 @@
 __Mode = BEACON_INIT
 
+--Se configura como salida
+gpio.mode(btResetPin, gpio.OUTPUT)
+--[[Se inicializa su valor como apagado, recordando que por la configuracion del transistor en el circuito LOW encendera
+    el bluetooth y HIGH lo apagara.]]
+gpio.write(btResetPin,gpio.LOW)
+
 dofile("gpioConfig.lua")
 
 programmerTimer = tmr.create()
@@ -301,8 +307,8 @@ function createAtManager()
         local reset = {parametro = "RESET"}
         local roleOn = {parametro = "ROLE",nuevoValor= 1}
         local roleOff = {parametro = "ROLE",nuevoValor= 0}
-        local immeOn = {parametro = "ROLE",nuevoValor= 1}
-        local immeOff = {parametro = "ROLE",nuevoValor= 0}
+        local immeOn = {parametro = "IMME",nuevoValor= 1}
+        local immeOff = {parametro = "IMME",nuevoValor= 0}
 
         comandos.beaconMode = {iBeaconON, immeOff,roleOff,reset}
         comandos.scannerMode = {iBeaconOFF,immeOn,roleOn,reset}

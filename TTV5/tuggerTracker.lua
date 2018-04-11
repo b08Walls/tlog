@@ -1,7 +1,7 @@
 __Mode = SCANNER_INIT
 
 print(node.heap())
-dofile("constants.lua")
+--dofile("constants.lua")
 
 print(node.heap())
 dofile("lookTimers.lua")

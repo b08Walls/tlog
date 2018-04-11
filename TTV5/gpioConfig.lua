@@ -33,7 +33,7 @@ function initGPIO()
     gpio.mode(btResetPin, gpio.OUTPUT)
     --[[Se inicializa su valor como apagado, recordando que por la configuracion del transistor en el circuito LOW encendera
         el bluetooth y HIGH lo apagara.]]
-    gpio.write(btResetPin,gpio.LOW)
+    gpio.write(btResetPin,gpio.HIGH)
 
     --Se coloca el modo de este pin en modo INT(interrupcion)
     gpio.mode(configModePin,gpio.INT)

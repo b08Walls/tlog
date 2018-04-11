@@ -32,3 +32,9 @@ btResetPin = 1
 
 mqttIP = "192.168.1.68"
 mqttPort = 1883
+
+--Se configura como salida
+gpio.mode(btResetPin, gpio.OUTPUT)
+--[[Se inicializa su valor como apagado, recordando que por la configuracion del transistor en el circuito LOW encendera
+    el bluetooth y HIGH lo apagara.]]
+gpio.write(btResetPin,gpio.LOW)

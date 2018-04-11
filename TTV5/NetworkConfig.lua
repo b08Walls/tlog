@@ -3,6 +3,15 @@
     interrupcion, esto con el fin de evitar que falsos en el boton generen dos interrupciones]]
 gpio.mode(statusLedPin,gpio.OUTPUT)
 gpio.write(statusLedPin,gpio.LOW)
+
+--Se configura como salida
+gpio.mode(btResetPin, gpio.OUTPUT)
+--[[Se inicializa su valor como apagado, recordando que por la configuracion del transistor en el circuito LOW encendera
+    el bluetooth y HIGH lo apagara.]]
+gpio.write(btResetPin,gpio.LOW)
+
+print("SE HA APAGADO EL BT")
+
 --[[En esta funcion local se generan el archivo HTML que se va a mostrar en el servidor cuando se entre en modo de
     configuracion, dentro del micro ya se encuentran guardado el template archivo general en dos partes, por medio 
     de esta funcion se crea el archivo general colocando en medio el codigo html para mostrar las redes escaneadas
