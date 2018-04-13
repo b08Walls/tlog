@@ -1,0 +1,40 @@
+		</select>
+	</div>
+
+	<div>
+		<input type="password" name="password" id="password" placeholder="password">
+	</div>
+
+	<div>
+		<input type="submit" name="submit" id="submit" onclick="test()">
+	</div>
+
+	<script type="text/javascript">
+		
+		var baseURL = "http://example.com/update?";
+		var ssidField = "wifi_ssid=";
+		var pswField = "wifi_password="
+
+		function test()
+		{
+			console.log("test");
+
+			var selector = document.querySelector("select");
+
+			var url = baseURL+ssidField+selector.options[selector.selectedIndex].text+"&"+pswField+document.querySelector("#password").value;
+
+			console.log("URL: "+url);
+
+			var xmlHttp = new XMLHttpRequest();
+			xmlHttp.onreadystatechange = function(){
+				if(xmlHttp.readyState == 4 && xmlHttp.status == 200)
+					callback(xmlHttp.responseText);
+			}
+			xmlHttp.open("GET", url,true);
+			xmlHttp.send(null);
+		}
+	</script>
+
+
+</body>
+</html>
