@@ -30,7 +30,8 @@ btResetPin = 1
 
 --CONSTANTES MQTT
 
-mqttIP = "192.168.1.68"
+--mqttIP = "192.168.1.64"
+mqttIP = "10.42.0.1"
 mqttPort = 1883
 
 --Se configura como salida

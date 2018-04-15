@@ -29,7 +29,7 @@ function loadNetworks(lista,html)
     --Con la lista de redes recibida en el metodo se crean y escriben los elementos HTML para visualizar las redes
     for k,v in pairs(lista) do
         html:write('<option>'..v..'</option>')
-        print("linea html agregada")
+        print("linea html agregada",v)
     end
 
     print("ESCRIBIENDO FINAL")
