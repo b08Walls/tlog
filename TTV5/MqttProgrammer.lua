@@ -82,7 +82,7 @@ function initRemoteProg()
                         print("CHIPID: ",node.chipid())
                     end)
 
-                client:publish("node/register","{'chipid':"..node.chipid().."}",0,0,good)
+                client:publish("node/register","{'chipid':"..node.chipid()..",'mode':'programmer'}",0,0,good)
             end,
             --FUNCION A REALIZAR CUANDO NO SE LOGRA CONECTAR
             function(client,reason)
@@ -209,6 +209,24 @@ function createAtManager()
             local localTimer = tmr.create()
             localTimer:register(5,1,function()
                 programmer.mqttPrint(respuesta)
+                print("LA RESPUESTA EN EL localTimer ES:",respuesta, "VALOR SOLCITADO:",parametro);
+                if parametro == "MARJ" or parametro == "MINO" then
+
+                    local lista = {}
+
+                    for i in respuesta:gmatch("[^:]+") do
+                        table.insert(lista,i)
+                        print(i)
+                    end
+
+                    print("......................")
+
+                    valor = lista[#lista]:gsub("0x","")
+
+                    print("EL VALOR A ACTUALIZAR A LA BASE DE DATOS ES: ",valor)
+
+                    programmer.sendSingle('{"chipid":'..node.chipid()..',"'..parametro..'":"'..valor..'"}',"node/register");
+                end
                 respuesta = ""
                 print("unregister uartcallback and stop timer")
                 uart.on("data")
@@ -236,7 +254,7 @@ function createAtManager()
 
                 print("entrada en uart")
                 respuesta = respuesta..data
-                print(respuesta)
+                print("RESPUESTA UART",respuesta)
                 if valor then
                     print("nuevo valor: ",valor)
                     print("OK%+[GS]et:"..valor)
@@ -251,6 +269,10 @@ function createAtManager()
                         if ok then
                             print(json)
                             programmer.mqttPrint(json)
+                            --AQUI SE REALIZO EL CAMBIO-----------------------------------------------------
+                            if parametro == "MARJ" or parametro == "MINO" then
+                                programmer.sendSingle('{"chipid":'..node.chipid()..',"'..parametro..'":"'..valor..'"}',"node/register");
+                            end
                         else
                           print("failed to encode!")
                         end

@@ -168,7 +168,7 @@ function initUART()
                             updateData(data)
                         end
 
-                        client:publish("node/register","{'chipid':"..node.chipid().."}",0,0,good)
+                        client:publish("node/register","{'chipid':"..node.chipid()..",'mode':'scanner'}",0,0,good)
                     end,
                     --FUNCION A REALIZAR CUANDO NO SE LOGRA CONECTAR
                     function(client,reason)
