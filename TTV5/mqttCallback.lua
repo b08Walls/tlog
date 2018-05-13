@@ -67,6 +67,8 @@ if mqttLoad ~= nil then
                     print("ERROR",k)
                     mqttPrint("error:");
                 end
+            -- elseif r.command == SET_IP then
+            --     print("setting IP")
             end
         else
             print("nodthing haha")

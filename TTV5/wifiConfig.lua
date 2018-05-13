@@ -6,6 +6,7 @@ function initWIFI()
     wifi.setphymode(wifi.PHYMODE_B)
     local stationConfig = {}
     --stationConfig.ssid = "iPhone de Octavio Roberto"
+    -- stationConfig.ssid = "TUGGER-NET"
     stationConfig.ssid = "TUGGER-NET"
     --stationConfig.ssid = "Telcel_NYX_2467"
     --stationConfig.ssid = "B08LAP"
