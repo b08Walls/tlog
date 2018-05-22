@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------------------------------------------------------|
 --[[Funcion para inicializar la conexion WIFI]]-------------------------------------------------------------------------------|
 ------------------------------------------------------------------------------------------------------------------------------|
-function initWIFI()
+-- function initWIFI()
     wifi.setmode(wifi.STATION)
     wifi.setphymode(wifi.PHYMODE_B)
     local stationConfig = {}
@@ -15,8 +15,16 @@ function initWIFI()
     --stationConfig.pwd = "70082467"
     --stationConfig.pwd = "d1fdae0527"
     wifi.sta.config(stationConfig)
-end
 
-initWIFI()
+    local ipConfig = {}
+    ipConfig.ip = "192.168.0.70"
+    ipConfig.netmask = "255.255.255.0"
+    ipConfig.gateway = "192.168.0.1"
+
+    wifi.sta.setip(ipConfig)
+
+-- end
+
+-- initWIFI()
 print("WIFI READY")
-initWIFI = nil
+-- initWIFI = nil

@@ -85,7 +85,8 @@ function initTMR()
 
     local function btReset()
         local btResetPin = 1
-        if btTry >= 5 then
+        -- if btTry >= 5 then
+        if btTry%3 == 0 then
             print("RESETEANDO BT")
             --apagar pin bt
 
@@ -95,9 +96,11 @@ function initTMR()
             -- tmr.delay(2000000)
             -- --encender pin bt
             -- gpio.write(btResetPin,gpio.LOW)
-            btTry = 0
+            -- btTry = 0
             -- print("BT RESETEADO")
         end
+
+        if btTry > 12 then node.restart() end
     end
 
     --Este timer tiene la funcion de preguntar al BT por una nueva busqueda en caso de no obtener respuesta
@@ -106,6 +109,7 @@ function initTMR()
         looking = false
         look()
         btTry = btTry+1
+        count = btTry
         btReset()
         end)
     btTimer:start()

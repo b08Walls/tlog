@@ -36,13 +36,13 @@ function initGPIO()
     gpio.write(btResetPin,gpio.HIGH)
 
     --Se coloca el modo de este pin en modo INT(interrupcion)
-    gpio.mode(configModePin,gpio.INT)
+    --gpio.mode(configModePin,gpio.INT)
     --[[Se configura la rutina a seguir para la interrupcion esta es:
             *   Numero de pin
             *   Borde de subida
             *   Funcion a ejecutar, funcion resultante de la funcion getIntD2
       ]]
-    gpio.trig(configModePin,"up",intD2)
+    --gpio.trig(configModePin,"up",intD2)
 
 
     gpio.mode(statusLedPin,gpio.OUTPUT)
